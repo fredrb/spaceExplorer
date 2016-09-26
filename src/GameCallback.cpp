@@ -2,6 +2,8 @@
 #include "file/PTMFileReader.h"
 #include "common/SpriteLoader.h"
 
+#include <iostream>
+
 #include <GL/gl.h>
 #include <GL/glut.h>
 
@@ -29,25 +31,31 @@ namespace GameCallback {
 
     void plotStarfield(int value) {
         value = value % 600;
+        Render::Image* star_one = new Render::Image(starfield->getWidth() - value, starfield->getHeight());
+        Render::Image* star_two = new Render::Image(value, starfield->getHeight());
 
-        Render::Image *chopped = new Render::Image(value, background->getHeight());
-        starfield->subImage(chopped, 0, 0);
+        starfield->subImage(star_one, value, 0);
+        starfield->subImage(star_two, value, 0);
 
-        Render::Image *newPosition = new Render::Image(starfield->getWidth() - value, starfield->getHeight());
-        starfield->subImage(newPosition, value, 0);
+        std::cout << "Star one: " << star_one->getWidth() << std::endl;
+        std::cout << "Star two: " << star_two->getWidth() << std::endl;
 
-        gameImage->plot(chopped, newPosition->getWidth(), 0);
-        gameImage->plot(newPosition, 0, 0);
+        gameImage->plot(star_one, 0, 0);
+        gameImage->plot(star_two, starfield->getWidth() - value, 0);
 
-        delete(chopped);
-        delete(newPosition);
+        delete(star_one);
+        delete(star_two);
     }
 
     void update(int value) {
-        gameImage = new Render::Image(1782, 600);
+        if (gameImage == NULL) {
+          gameImage = new Render::Image(1782, 600);
+        }
+
         gameImage->plot(background, 0, 0);
         plotStarfield(value);
         gameImage->plot(getCurrentPlayerFrame(value), 100, 100);
+
         glutPostRedisplay();
         glutTimerFunc(10, update, value + 1);
     }
