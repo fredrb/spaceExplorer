@@ -32,6 +32,8 @@ void Game::init(int argc, char **argv) {
 
     this->initGLDisplay();
 
+    gameImage = new Render::Image(this->window_width, this->window_height);
+
     glutTimerFunc(100, GameCallback::update, 1);
     glutDisplayFunc(GameCallback::display);
 
@@ -43,6 +45,8 @@ void Game::initGLDisplay() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
+    // @todo temos que remover o GL_BLEND, o calculo de alpha dever ser feito "na mao"
+    // confirmar antes.
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

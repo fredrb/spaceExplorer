@@ -10,10 +10,7 @@
 namespace GameCallback {
 
     void display() {
-        if (gameImage != NULL) {
-            glDrawPixels(gameImage->getWidth(), gameImage->getHeight(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, gameImage->getPixels());
-        }
-
+        glDrawPixels(gameImage->getWidth(), gameImage->getHeight(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, gameImage->getPixels());
         glutSwapBuffers();
     }
 
@@ -37,9 +34,6 @@ namespace GameCallback {
         starfield->subImage(star_one, value, 0);
         starfield->subImage(star_two, value, 0);
 
-        std::cout << "Star one: " << star_one->getWidth() << std::endl;
-        std::cout << "Star two: " << star_two->getWidth() << std::endl;
-
         gameImage->plot(star_one, 0, 0);
         gameImage->plot(star_two, starfield->getWidth() - value, 0);
 
@@ -48,9 +42,6 @@ namespace GameCallback {
     }
 
     void update(int value) {
-        if (gameImage == NULL) {
-          gameImage = new Render::Image(1782, 600);
-        }
 
         gameImage->plot(background, 0, 0);
         plotStarfield(value);
@@ -62,4 +53,3 @@ namespace GameCallback {
 
 
 }
-

@@ -5,6 +5,10 @@
 #ifndef STAR_EXPLORER_GAME_H
 #define STAR_EXPLORER_GAME_H
 
+#include "render/Image.h"
+
+extern Render::Image *gameImage;
+
 class Game {
 
 public:
