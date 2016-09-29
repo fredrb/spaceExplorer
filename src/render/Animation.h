@@ -14,8 +14,8 @@ namespace Render {
         Image* getFrame(int index);
     private:
         int frameCount;
-        // std::vector<Image*> frames;
-        Image** frames;
+        std::vector<Image*> frames;
+        // Image** frames;
     };
 }
 
