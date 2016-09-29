@@ -22,17 +22,18 @@ namespace GameCallback {
 
     }
 
-    Render::Image* getCurrentPlayerFrame(int timerValue) {
-        return playerAnimation->getFrame(timerValue % 4);
-    }
+//    Render::Image* getCurrentPlayerFrame(int timerValue) {
+//        return playerAnimation->getFrame(timerValue % 4);
+//    }
 
     void update(int value) {
         gameImage->plot(background->viewport, 0, 0);
-        gameImage->plot(parallax->viewport, 0, 0);
-        gameImage->plot(getCurrentPlayerFrame(value), 100, 100);
+        gameImage->plot(starfield->viewport, 0, 0);
+        gameImage->plot(player->getFrame(), 100, 100);
 
-        parallax->scrollRight();
+        starfield->scrollRight();
         background->scrollRight();
+        player->nextFrame();
 
         glutPostRedisplay();
         glutTimerFunc(10, update, value + 1);

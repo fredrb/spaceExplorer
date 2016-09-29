@@ -8,10 +8,11 @@
 #include "render/Image.h"
 #include "render/Animation.h"
 #include "render/Layer.h"
+#include "GameObject.h"
 
-extern Render::Image *gameImage, *starfield;
-extern Render::Layer *parallax, *background;
-extern Render::Animation *playerAnimation;
+extern Render::Image *gameImage;
+extern Render::Layer *starfield, *background;
+extern GameObject *player;
 
 namespace GameCallback {
     void display();

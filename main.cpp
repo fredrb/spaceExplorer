@@ -4,9 +4,9 @@
 #include "src/file/PTMFileReader.h"
 #include "src/common/SpriteLoader.h"
 
-Render::Image *gameImage, *starfield;
-Render::Layer *parallax, *background;
-Render::Animation *playerAnimation;
+Render::Image *gameImage;
+Render::Layer *starfield, *background;
+GameObject *player;
 
 void loadBackground() {
     File::PTMFileReader filereader = File::PTMFileReader();
@@ -23,9 +23,9 @@ void loadStarField() {
     File::t_image img = filereader.loadImage((char *) "../resource/starfield.ptm");
     SpriteLoader loader = SpriteLoader(img);
 
-    starfield = loader.getImage();
-    parallax = new Render::Layer(starfield->getWidth(), starfield->getHeight(), 3, 0);
-    parallax->plot(starfield, nullptr);
+    Render::Image* starfieldImg = loader.getImage();
+    starfield = new Render::Layer(starfieldImg->getWidth(), starfieldImg->getHeight(), 3, 0);
+    starfield->plot(starfieldImg, nullptr);
 }
 
 void loadPlayer() {
@@ -33,7 +33,10 @@ void loadPlayer() {
     File::t_image img = filereader.loadImage((char *) "../resource/rocket.ptm");
     SpriteLoader loader = SpriteLoader(img);
 
-    playerAnimation = loader.getAnimation(1, 4);
+    Render::Animation* playerAnimation = loader.getAnimation(1, 4);
+
+    player = new GameObject(4);
+    player->setSprite(playerAnimation);
 }
 
 int main(int argc,  char** argv) {
