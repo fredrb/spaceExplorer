@@ -12,6 +12,7 @@ namespace Render {
     class Image {
     public:
         Image(int w, int h);
+        ~Image();
         void setPixel(int a, int r, int g, int b, int x, int y);
         int getPixel(int x, int y);
         int getWidth(){ return width; };

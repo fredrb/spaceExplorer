@@ -8,6 +8,10 @@ Image::Image(int w, int h) {
     pixels = new int[w*h];
 }
 
+Image::~Image() {
+    delete pixels;
+}
+
 int Image::getPixel(int x, int y) {
     return pixels[x+y*width];
 }
