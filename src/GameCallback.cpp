@@ -1,6 +1,7 @@
 #include "GameCallback.h"
 #include "file/PTMFileReader.h"
 #include "common/SpriteLoader.h"
+#include "game/Movement.h"
 
 #include <iostream>
 
@@ -17,10 +18,10 @@ namespace GameCallback {
     void specialKeys(int key, int x, int y) {
         switch (key) {
             case GLUT_KEY_UP:
-                player->posY += 3;
+                GameLogic::move(player, Up);
                 break;
             case GLUT_KEY_DOWN:
-                player->posY -= 3;
+                GameLogic::move(player, Down);
                 break;
             default:break;
         }
@@ -44,6 +45,7 @@ namespace GameCallback {
         glutPostRedisplay();
         glutTimerFunc(2, update, value + 1);
     }
+
 
 
 

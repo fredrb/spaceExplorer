@@ -44,12 +44,11 @@ void Render::Layer::addObject(GameObject *object) {
 
 void Render::Layer::refresh() {
     object->nextFrame();
-    if (objectsChanged()) {
+    object->refresh();
+    if (object->hasPositionChanged()) {
         currentImage->subImage(viewport, posX, posY);
         viewport->plot(object->getFrame(), object->posX, object->posY);
     }
 }
 
-bool Render::Layer::objectsChanged() {
-    return (object->posX != object->layerPosX || object->posY != object->layerPoxY);
-}
+

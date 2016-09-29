@@ -42,6 +42,7 @@ void loadPlayer() {
 
     player->posX = 50;
     player->posY = 300;
+    player->speedCap = 7;
 
     objectlayer->addObject(player);
 }

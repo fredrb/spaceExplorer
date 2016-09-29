@@ -29,8 +29,6 @@ namespace Render {
         int rateY;
         int posX;
         int posY;
-
-        bool objectsChanged();
     };
 }
 

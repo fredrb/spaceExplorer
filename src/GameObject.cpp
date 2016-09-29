@@ -18,3 +18,12 @@ void GameObject::setSprite(Render::Animation *animation) {
 Render::Image *GameObject::getFrame() {
     return this->animation->getFrame(currentFrame);
 }
+
+bool GameObject::hasPositionChanged() {
+    return (this->posX != this->layerPosX || this->posY != this->layerPoxY);
+}
+
+void GameObject::refresh() {
+    posX += xspeed;
+    posY += yspeed;
+}

@@ -17,6 +17,7 @@ extern GameObject *player;
 namespace GameCallback {
     void display();
     void specialKeys(int key, int x, int y);
+    void specialUpKeys(int key, int x, int y);
     void mouse();
     void update(int value);
 }

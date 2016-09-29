@@ -1,7 +1,3 @@
-//
-// Created by fredrb on 9/29/16.
-//
-
 #ifndef STAR_EXPLORER_GAMEOBJECT_H
 #define STAR_EXPLORER_GAMEOBJECT_H
 
@@ -10,16 +6,21 @@
 
 class GameObject {
 public:
-    GameObject(int frameCount) : frameCount(frameCount), posY(0), posX(0), layerPosX(0), layerPoxY(0) {};
+    GameObject(int frameCount) : frameCount(frameCount), posY(0), posX(0), layerPosX(0), layerPoxY(0), xspeed(0), yspeed(0), speedCap(3) {};
     ~GameObject() {};
     void nextFrame();
     void setSprite(Render::Animation* animation);
+    void refresh();
+    bool hasPositionChanged();
     Render::Image* getFrame();
     int posX;
     int posY;
+    int xspeed;
+    int yspeed;
+    int speedCap;
+private:
     int layerPosX;
     int layerPoxY;
-private:
     Render::Animation* animation;
     int currentFrame = 0;
     int frameCount;
