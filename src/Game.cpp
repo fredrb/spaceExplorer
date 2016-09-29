@@ -36,6 +36,7 @@ void Game::init(int argc, char **argv) {
 
     glutTimerFunc(100, GameCallback::update, 1);
     glutDisplayFunc(GameCallback::display);
+    glutSpecialFunc(GameCallback::specialKeys);
 
     glutMainLoop();
 }

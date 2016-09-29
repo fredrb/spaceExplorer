@@ -1,7 +1,3 @@
-//
-// Created by frederico on 9/12/16.
-//
-
 #include "Animation.h"
 
 using namespace Render;

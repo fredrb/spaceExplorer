@@ -14,30 +14,37 @@ namespace GameCallback {
         glutSwapBuffers();
     }
 
-    void keyboard() {
-
+    void specialKeys(int key, int x, int y) {
+        switch (key) {
+            case GLUT_KEY_UP:
+                player->posY += 3;
+                break;
+            case GLUT_KEY_DOWN:
+                player->posY -= 3;
+                break;
+            default:break;
+        }
     }
 
     void mouse() {
 
     }
 
-//    Render::Image* getCurrentPlayerFrame(int timerValue) {
-//        return playerAnimation->getFrame(timerValue % 4);
-//    }
-
     void update(int value) {
         gameImage->plot(background->viewport, 0, 0);
         gameImage->plot(starfield->viewport, 0, 0);
-        gameImage->plot(player->getFrame(), 100, 100);
+        gameImage->plot(objectlayer->viewport, 0, 0);
 
         starfield->scrollRight();
         background->scrollRight();
-        player->nextFrame();
+        // player->nextFrame();
+
+        objectlayer->refresh();
 
         glutPostRedisplay();
-        glutTimerFunc(10, update, value + 1);
+        glutTimerFunc(2, update, value + 1);
     }
+
 
 
 }

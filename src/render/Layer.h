@@ -7,6 +7,7 @@
 
 
 #include "Image.h"
+#include "../GameObject.h"
 
 namespace Render {
     class Layer {
@@ -15,8 +16,12 @@ namespace Render {
         ~Layer();
         void scrollRight();
         void plot(Image* origin, char zbuffer[]);
+        void addObject(GameObject* object);
+        void refresh();
         Image* viewport;
     private:
+        std::vector<GameObject*> objects;
+        GameObject* object;
         Image* currentImage;
         int originalWidth;
         int originalHeight;
@@ -24,6 +29,8 @@ namespace Render {
         int rateY;
         int posX;
         int posY;
+
+        bool objectsChanged();
     };
 }
 

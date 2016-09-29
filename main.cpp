@@ -5,7 +5,7 @@
 #include "src/common/SpriteLoader.h"
 
 Render::Image *gameImage;
-Render::Layer *starfield, *background;
+Render::Layer *starfield, *background, *objectlayer;
 GameObject *player;
 
 void loadBackground() {
@@ -24,7 +24,7 @@ void loadStarField() {
     SpriteLoader loader = SpriteLoader(img);
 
     Render::Image* starfieldImg = loader.getImage();
-    starfield = new Render::Layer(starfieldImg->getWidth(), starfieldImg->getHeight(), 3, 0);
+    starfield = new Render::Layer(starfieldImg->getWidth(), starfieldImg->getHeight(), 2, 0);
     starfield->plot(starfieldImg, nullptr);
 }
 
@@ -37,6 +37,13 @@ void loadPlayer() {
 
     player = new GameObject(4);
     player->setSprite(playerAnimation);
+
+    objectlayer = new Render::Layer(800, 600, 0, 0);
+
+    player->posX = 50;
+    player->posY = 300;
+
+    objectlayer->addObject(player);
 }
 
 int main(int argc,  char** argv) {

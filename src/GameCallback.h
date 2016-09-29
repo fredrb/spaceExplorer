@@ -11,12 +11,12 @@
 #include "GameObject.h"
 
 extern Render::Image *gameImage;
-extern Render::Layer *starfield, *background;
+extern Render::Layer *starfield, *background, *objectlayer;
 extern GameObject *player;
 
 namespace GameCallback {
     void display();
-    void keyboard();
+    void specialKeys(int key, int x, int y);
     void mouse();
     void update(int value);
 }

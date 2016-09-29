@@ -10,13 +10,15 @@
 
 class GameObject {
 public:
-    GameObject(int frameCount) : frameCount(frameCount) {};
+    GameObject(int frameCount) : frameCount(frameCount), posY(0), posX(0), layerPosX(0), layerPoxY(0) {};
     ~GameObject() {};
     void nextFrame();
     void setSprite(Render::Animation* animation);
     Render::Image* getFrame();
     int posX;
     int posY;
+    int layerPosX;
+    int layerPoxY;
 private:
     Render::Animation* animation;
     int currentFrame = 0;

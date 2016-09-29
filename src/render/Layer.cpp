@@ -27,9 +27,29 @@ Render::Layer::Layer(int w, int h, int rateX, int rateY) {
 
     currentImage = new Image(w*2, h);
     viewport = new Image(w, h);
+    objects = std::vector<GameObject*>();
 }
 
 Render::Layer::~Layer() {
     delete currentImage;
     delete viewport;
+}
+
+void Render::Layer::addObject(GameObject *object) {
+    // objects.push_back(object);
+    this->object = object;
+    currentImage->subImage(viewport, posX, posY);
+    viewport->plot(object->getFrame(), object->posX, object->posY);
+}
+
+void Render::Layer::refresh() {
+    object->nextFrame();
+    if (objectsChanged()) {
+        currentImage->subImage(viewport, posX, posY);
+        viewport->plot(object->getFrame(), object->posX, object->posY);
+    }
+}
+
+bool Render::Layer::objectsChanged() {
+    return (object->posX != object->layerPosX || object->posY != object->layerPoxY);
 }
