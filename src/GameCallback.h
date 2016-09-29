@@ -7,8 +7,10 @@
 
 #include "render/Image.h"
 #include "render/Animation.h"
+#include "render/Layer.h"
 
-extern Render::Image *gameImage, *background, *starfield;
+extern Render::Image *gameImage, *starfield;
+extern Render::Layer *parallax, *background;
 extern Render::Animation *playerAnimation;
 
 namespace GameCallback {

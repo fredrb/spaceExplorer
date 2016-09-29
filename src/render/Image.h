@@ -24,6 +24,8 @@ namespace Render {
         int *pixels;
         int width, height;
         t_image_pixel unpackagePixel(int pixel);
+        bool isValidPixel(int x, int y);
+        void copyPixel(Image* dest, int sx, int sy, int x, int y);
     };
 }
 

@@ -4,7 +4,8 @@
 #include "src/file/PTMFileReader.h"
 #include "src/common/SpriteLoader.h"
 
-Render::Image *gameImage, *background, *starfield;
+Render::Image *gameImage, *starfield;
+Render::Layer *parallax, *background;
 Render::Animation *playerAnimation;
 
 void loadBackground() {
@@ -12,7 +13,9 @@ void loadBackground() {
     File::t_image img = filereader.loadImage((char *) "../resource/background.ptm");
     SpriteLoader loader = SpriteLoader(img);
 
-    background = loader.getImage();
+    Render::Image* bg = loader.getImage();
+    background = new Render::Layer(800, 600, 1, 0);
+    background->plot(bg, nullptr);
 }
 
 void loadStarField() {
@@ -21,6 +24,8 @@ void loadStarField() {
     SpriteLoader loader = SpriteLoader(img);
 
     starfield = loader.getImage();
+    parallax = new Render::Layer(starfield->getWidth(), starfield->getHeight(), 3, 0);
+    parallax->plot(starfield, nullptr);
 }
 
 void loadPlayer() {
@@ -35,7 +40,7 @@ int main(int argc,  char** argv) {
     Game startExplorer = Game();
 
     startExplorer.setPosition(300, 200);
-    startExplorer.setSize(1782, 600);
+    startExplorer.setSize(800, 600);
     startExplorer.setTitle((char *) "Star explorer");
 
     loadBackground();

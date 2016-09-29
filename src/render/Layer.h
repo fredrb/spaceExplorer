@@ -11,10 +11,15 @@
 namespace Render {
     class Layer {
     public:
+        Layer(int w, int h, int rateX, int rateY);
+        ~Layer();
         void scrollRight();
         void plot(Image* origin, char zbuffer[]);
-        Image* currentImage;
+        Image* viewport;
     private:
+        Image* currentImage;
+        int originalWidth;
+        int originalHeight;
         int rateX;
         int rateY;
         int posX;

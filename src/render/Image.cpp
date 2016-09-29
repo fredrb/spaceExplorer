@@ -2,7 +2,6 @@
 
 using namespace Render;
 
-
 Image::Image(int w, int h) {
     width = w; height = h;
     pixels = new int[w*h];
@@ -21,7 +20,8 @@ int packageBit(int a, int r, int g, int b) {
 }
 
 void Image::setPixel(int alpha, int r, int g, int b, int x, int y) {
-    pixels[x+y*width] = packageBit(alpha, r, g, b);
+    if (isValidPixel(x, y))
+        pixels[x+y*width] = packageBit(alpha, r, g, b);
 }
 
 void Image::plot(Image *image, int sx, int sy) {
@@ -47,9 +47,19 @@ t_image_pixel Image::unpackagePixel(int pixel) {
 void Image::subImage(Image *dest, int sx, int sy) {
     for (int y = 0; y < dest->getHeight(); y++) {
         for (int x = 0; x < dest->getWidth(); x++) {
-            int pixel = this->getPixel(sx + x, sy + y);
-            t_image_pixel imagePixel = this->unpackagePixel(pixel);
-            dest->setPixel(imagePixel.alpha, imagePixel.r, imagePixel.g, imagePixel.b, x, y);
+            copyPixel(dest, sx, sy, x, y);
         }
+    }
+}
+
+bool Image::isValidPixel(int x, int y) {
+    return this->getWidth() > x && this->getHeight() > y;
+}
+
+void Image::copyPixel(Image* dest, int sx, int sy, int x, int y) {
+    if (isValidPixel(x, y)) {
+        int pixel = this->getPixel(sx + x, sy + y);
+        t_image_pixel imagePixel = this->unpackagePixel(pixel);
+        dest->setPixel(imagePixel.alpha, imagePixel.r, imagePixel.g, imagePixel.b, x, y);
     }
 }
