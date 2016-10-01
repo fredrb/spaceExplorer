@@ -20,7 +20,6 @@ void Game::setPosition(int x, int y) {
 
 void Game::setTitle(char *title) {
     this->title = title;
-
 }
 
 void Game::init(int argc, char **argv) {
@@ -51,5 +50,5 @@ void Game::initGLDisplay() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    gluOrtho2D(0, 1.0, 1.0, 0);
+    gluOrtho2D(0, this->window_width, 0, this->window_height);
 }
