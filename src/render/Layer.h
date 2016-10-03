@@ -29,6 +29,8 @@ namespace Render {
         int rateY;
         int posX;
         int posY;
+
+        void refreshObject(GameObject *object);
     };
 }
 

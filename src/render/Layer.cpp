@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include "Layer.h"
 
 void Render::Layer::scrollRight() {
@@ -36,13 +37,18 @@ Render::Layer::~Layer() {
 }
 
 void Render::Layer::addObject(GameObject *object) {
-    // objects.push_back(object);
-    this->object = object;
+    objects.push_back(object);
     currentImage->subImage(viewport, posX, posY);
     viewport->plot(object->getFrame(), object->posX, object->posY);
 }
 
 void Render::Layer::refresh() {
+    for (unsigned long i = 0; i < objects.size(); i++) {
+        this->refreshObject(objects.at(i));
+    }
+}
+
+void Render::Layer::refreshObject(GameObject *object) {
     object->nextFrame();
     object->refresh();
     if (object->hasPositionChanged()) {
@@ -50,5 +56,7 @@ void Render::Layer::refresh() {
         viewport->plot(object->getFrame(), object->posX, object->posY);
     }
 }
+
+
 
 
