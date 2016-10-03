@@ -32,11 +32,14 @@ void Game::init(int argc, char **argv) {
     this->initGLDisplay();
 
     gameImage = new Render::Image(this->window_width, this->window_height);
+    scoreboard = new Render::Text("Score: ", 5, 5);
+    timer = new Timer();
 
     glutTimerFunc(100, GameCallback::update, 1);
     glutDisplayFunc(GameCallback::display);
     glutSpecialFunc(GameCallback::specialKeys);
 
+    timer->start();
     glutMainLoop();
 }
 

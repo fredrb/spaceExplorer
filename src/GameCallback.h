@@ -9,10 +9,16 @@
 #include "render/Animation.h"
 #include "render/Layer.h"
 #include "GameObject.h"
+#include "render/Text.h"
+#include "game/Timer.h"
 
 extern Render::Image *gameImage;
 extern Render::Layer *starfield, *background, *objectlayer;
 extern GameObject *player;
+extern Timer *timer;
+extern Render::Text *scoreboard;
+
+extern int score;
 
 namespace GameCallback {
     void display();

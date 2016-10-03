@@ -1,18 +1,15 @@
 #include "GameCallback.h"
-#include "file/PTMFileReader.h"
-#include "common/SpriteLoader.h"
 #include "game/Movement.h"
-
-#include <iostream>
-
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include <cstring>
 
 namespace GameCallback {
 
     void display() {
         glRasterPos2f(0, 0);
         glDrawPixels(gameImage->getWidth(), gameImage->getHeight(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, gameImage->getPixels());
+        scoreboard->print();
         glutSwapBuffers();
     }
 
@@ -41,6 +38,11 @@ namespace GameCallback {
         starfield->scrollRight();
         background->scrollRight();
         // player->nextFrame();
+
+        timer->stop();
+        score += (timer->getElapsedTime() * 0.1 );
+        scoreboard->setText("Score:" + std::to_string(score));
+        timer->start();
 
         objectlayer->refresh();
 
