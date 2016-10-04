@@ -5,7 +5,9 @@
 
 enum MOVEMENT_DIRECTION {
     Up,
-    Down
+    Down,
+    Left,
+    Right
 };
 
 namespace GameLogic {

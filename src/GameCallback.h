@@ -26,6 +26,8 @@ namespace GameCallback {
     void specialUpKeys(int key, int x, int y);
     void mouse();
     void update(int value);
+    bool collide(GameObject *object1, GameObject *object2);
+    bool checkPointCollision(GameObject *object, int x, int y);
 }
 
 #endif //STAR_EXPLORER_GAMECALLBACK_H

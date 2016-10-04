@@ -19,6 +19,26 @@ void moveDown(GameObject* object) {
     }
 }
 
+void moveLeft(GameObject* object) {
+    if (object->xspeed > 0) {
+        object->xspeed = 0;
+    } else {
+        if (object->xspeed > (object->speedCap * -1))
+            object->xspeed -= 1;
+    }
+}
+
+void moveRight(GameObject* object) {
+    if (object->xspeed < 0) {
+        object->xspeed = 0;
+    } else {
+        if (object->xspeed < (object->speedCap))
+            object->xspeed += 1;
+    }
+}
+
+
+
 void GameLogic::move(GameObject *object, MOVEMENT_DIRECTION direction) {
     switch (direction) {
         case Up:
@@ -27,8 +47,13 @@ void GameLogic::move(GameObject *object, MOVEMENT_DIRECTION direction) {
         case Down:
             moveDown(object);
             break;
+        case Left:
+            moveLeft(object);
+            break;
+        case Right:
+            moveRight(object);
+            break;
         default:
             break;
     }
 }
-

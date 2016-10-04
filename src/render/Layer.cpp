@@ -43,6 +43,7 @@ void Render::Layer::addObject(GameObject *object) {
 }
 
 void Render::Layer::refresh() {
+    currentImage->subImage(viewport, posX, posY);
     for (unsigned long i = 0; i < objects.size(); i++) {
         this->refreshObject(objects.at(i));
     }
@@ -52,11 +53,6 @@ void Render::Layer::refreshObject(GameObject *object) {
     object->nextFrame();
     object->refresh();
     if (object->hasPositionChanged()) {
-        currentImage->subImage(viewport, posX, posY);
         viewport->plot(object->getFrame(), object->posX, object->posY);
     }
 }
-
-
-
-
