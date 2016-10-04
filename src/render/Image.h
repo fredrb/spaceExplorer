@@ -19,6 +19,8 @@ namespace Render {
         int getHeight(){ return height; }
         int* getPixels() { return pixels; };
         void plot(Image *image, int sx, int sy);
+        void plot(Image *image, int sx, int sy, char *zbuffer, char depth);
+        int packageBit(int a, int r, int g, int b);
         void subImage(Image* dest, int sx, int sy);
     private:
         int *pixels;
@@ -26,6 +28,8 @@ namespace Render {
         t_image_pixel unpackagePixel(int pixel);
         bool isValidPixel(int x, int y);
         void copyPixel(Image* dest, int sx, int sy, int x, int y);
+
+        int unpackageAlpha(int pixel);
     };
 }
 

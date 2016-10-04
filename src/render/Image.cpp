@@ -15,7 +15,7 @@ int Image::getPixel(int x, int y) {
     return pixels[x+y*width];
 }
 
-int packageBit(int a, int r, int g, int b) {
+int Image::packageBit(int a, int r, int g, int b) {
     return (a << 24) | (r << 16) | (g << 8) | b;
 }
 
@@ -25,11 +25,19 @@ void Image::setPixel(int alpha, int r, int g, int b, int x, int y) {
 }
 
 void Image::plot(Image *image, int sx, int sy) {
-    for (int y = 0; y < image->getHeight(); y++) {
-        for (int x = 0; x < image->getWidth(); x++) {
-            t_image_pixel imagePixel = this->unpackagePixel(image->getPixel(x, y));
-            if (imagePixel.alpha == 255)
-                this->setPixel(imagePixel.alpha, imagePixel.r, imagePixel.g, imagePixel.b, sx + x, sy + y);
+    int h = image->getHeight();
+    int w = image->getWidth();
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            int pixel = image->getPixel(x, y);
+            int alpha = ((pixel >> 24) & 0xff);
+            if (alpha == 255) {
+                if (isValidPixel(sx + x, sy + y)) {
+                    pixels[(sx + x) + (sy + y) * width] = pixel;
+                    //pixels[(sx + x) + (sy + y) * width] = packageBit(alpha, ((pixel >> 16) & 0xff), ((pixel >> 8) & 0xff), ((pixel) & 0xff));
+
+                }
+            }
         }
     }
 }
@@ -42,6 +50,10 @@ t_image_pixel Image::unpackagePixel(int pixel) {
     unpackaged.b     = (pixel)       & 0xff;
 
     return unpackaged;
+}
+
+int Image::unpackageAlpha(int pixel) {
+    return (pixel >> 24) & 0xff;
 }
 
 void Image::subImage(Image *dest, int sx, int sy) {
@@ -63,3 +75,7 @@ void Image::copyPixel(Image* dest, int sx, int sy, int x, int y) {
         dest->setPixel(imagePixel.alpha, imagePixel.r, imagePixel.g, imagePixel.b, x, y);
     }
 }
+
+
+
+
