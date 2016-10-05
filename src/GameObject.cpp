@@ -27,3 +27,16 @@ void GameObject::refresh() {
     posX += xspeed;
     posY += yspeed;
 }
+
+bool GameObject::checkPointCollision(int x, int y) {
+
+    if (x >= this->posX && x < (this->posX + this->getFrame()->getWidth())) {
+
+        if (y >= this->posY && y < (this->posY + this->getFrame()->getHeight())) {
+            return true;
+        }
+
+    }
+
+    return false;
+}

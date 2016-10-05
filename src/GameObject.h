@@ -12,6 +12,7 @@ public:
     void setSprite(Render::Animation* animation);
     void refresh();
     bool hasPositionChanged();
+    bool checkPointCollision(int x, int y);
     Render::Image* getFrame();
     int posX;
     int posY;

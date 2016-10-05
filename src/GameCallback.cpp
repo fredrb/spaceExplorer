@@ -52,32 +52,23 @@ namespace GameCallback {
 
     bool collide(GameObject *object1, GameObject *object2) {
 
-        int x1 = object1->posX;
-        int y1 = object1->posY;
+        int x1 = object2->posX;
+        int y1 = object2->posY;
 
-        int x2 = object1->posX + object2->getFrame()->getWidth();
-        int y2 = object1->posY;
+        int x2 = object2->posX + object2->getFrame()->getWidth();
+        int y2 = object2->posY;
 
-        int x3 = object1->posX + object2->getFrame()->getWidth();
-        int y3 = object1->posY + object2->getFrame()->getHeight();
+        int x3 = object2->posX + object2->getFrame()->getWidth();
+        int y3 = object2->posY + object2->getFrame()->getHeight();
 
-        int x4 = object1->posX;
-        int y4 = object1->posY + object2->getFrame()->getHeight();
+        int x4 = object2->posX;
+        int y4 = object2->posY + object2->getFrame()->getHeight();
 
-        return checkPointCollision(object2, x1,y1) || checkPointCollision(object2, x2,y2) || checkPointCollision(object2, x3,y3) || checkPointCollision(object2, x4,y4);
-    }
-
-    bool checkPointCollision(GameObject *object, int x, int y) {
-
-        if (x >= object->posX && x < (object->posX + object->getFrame()->getWidth())) {
-
-            if (y >= object->posY && y < (object->posY + object->getFrame()->getHeight())) {
-                return true;
-            }
-
-        }
-
-        return false;
+        return
+            object1->checkPointCollision(x1,y1)
+         || object1->checkPointCollision(x2,y2)
+         || object1->checkPointCollision(x3,y3)
+         || object1->checkPointCollision(x4,y4);
     }
 
 }
