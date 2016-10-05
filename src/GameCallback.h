@@ -5,12 +5,16 @@
 #ifndef STAR_EXPLORER_GAMECALLBACK_H
 #define STAR_EXPLORER_GAMECALLBACK_H
 
+#define FPS 30
+
 #include "render/Image.h"
 #include "render/Animation.h"
 #include "render/Layer.h"
 #include "GameObject.h"
 #include "render/Text.h"
 #include "game/Timer.h"
+
+#include <iostream>
 
 extern Render::Image *gameImage;
 extern Render::Layer *starfield, *background, *objectlayer;

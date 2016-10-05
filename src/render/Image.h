@@ -14,6 +14,7 @@ namespace Render {
         Image(int w, int h);
         ~Image();
         void setPixel(int a, int r, int g, int b, int x, int y);
+        void setPixel(int pixel, int x, int y);
         int getPixel(int x, int y);
         int getWidth(){ return width; };
         int getHeight(){ return height; }

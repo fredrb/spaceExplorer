@@ -31,23 +31,34 @@ namespace GameCallback {
 
     void update(int value) {
 
+        timer->start();
+
         gameImage->plot(background->viewport, 0, 0);
         gameImage->plot(starfield->viewport, 0, 0);
         gameImage->plot(objectlayer->viewport, 0, 0);
 
         starfield->scrollRight();
         background->scrollRight();
-        // player->nextFrame();
 
-        timer->stop();
-        score += (timer->getElapsedTime() * 0.1 );
+        score += (value * 0.1 );
         scoreboard->setText("Score:" + std::to_string(score));
-        timer->start();
 
         objectlayer->refresh();
 
+        timer->stop();
+
+        int waitingTime = (1000 / FPS) - timer->getElapsedTime();
+        value = waitingTime;
+
+        std::cout << "ET: " << timer->getElapsedTime() << " TIME: " << waitingTime << std::endl;
+
+        if (waitingTime < 0) {
+            waitingTime = 0;
+            value = 10;
+        }
+
         glutPostRedisplay();
-        glutTimerFunc(2, update, value + 1);
+        glutTimerFunc(waitingTime, update, value);
     }
 
     bool collide(GameObject *object1, GameObject *object2) {
