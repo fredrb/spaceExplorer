@@ -7,30 +7,28 @@
 
 #define FPS 30
 
-#include "render/Image.h"
-#include "render/Animation.h"
-#include "render/Layer.h"
-#include "GameObject.h"
-#include "render/Text.h"
 #include "game/Timer.h"
+#include "IGlutCallback.h"
+#include "screen/Play.h"
+#include "screen/Start.h"
 
 #include <iostream>
 
-extern Render::Image *gameImage;
-extern Render::Layer *starfield, *background, *objectlayer;
-extern GameObject *player;
 extern Timer *timer;
-extern Render::Text *scoreboard;
+extern IGlutCallback *currentScreen;
 
-extern int score;
 
 namespace GameCallback {
+
+    enum AVAL_SCREENS {Start, Play, GameOver};
+
     void display();
     void specialKeys(int key, int x, int y);
     void specialUpKeys(int key, int x, int y);
+    void keyboard(unsigned char key, int x, int y);
     void mouse();
     void update(int value);
-    bool collide(GameObject *object1, GameObject *object2);
+    void changeScreen(AVAL_SCREENS screen);
 }
 
 #endif //STAR_EXPLORER_GAMECALLBACK_H

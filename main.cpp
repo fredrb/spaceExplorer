@@ -3,15 +3,14 @@
 #include "src/GameCallback.h"
 #include "src/file/PTMFileReader.h"
 #include "src/common/SpriteLoader.h"
-#include "src/render/Text.h"
+#include "src/IGlutCallback.h"
+
+IGlutCallback *currentScreen;
 
 Render::Image *gameImage;
 Render::Layer *starfield, *background, *objectlayer;
-Render::Text *scoreboard;
 Timer *timer;
 GameObject *player;
-
-int score = 0;
 
 void loadBackground() {
     File::PTMFileReader filereader = File::PTMFileReader();
