@@ -9,6 +9,12 @@ using namespace Screen;
 Play::Play() {
     this->score = 0;
     this->scoreboard = new Render::Text("Score: ", 5, 5);
+    player->posX = 50;
+    player->posY = 300;
+    player->speedCap = 7;
+    player->xspeed = 0;
+    player->yspeed = 0;
+
 }
 
 void Play::display() {
@@ -30,12 +36,23 @@ void Play::update(int value) {
     this->score += (value * 0.1 );
     scoreboard->setText("Score:" + std::to_string(score));
 
+    // if collides then GameCallback::changeScreen(GameCallback::GameOver);
 
     objectlayer->refresh();
 }
 
 void Play::mouse() {}
-void Play::keyboard(unsigned char key, int x, int y) {}
+void Play::keyboard(unsigned char key, int x, int y) {
+
+    switch (key) {
+        case 27:
+            GameCallback::changeScreen(GameCallback::Start);
+        break;
+
+        default:
+        break;
+    }
+}
 
 
 void Play::specialKeys(int key, int x, int y) {

@@ -43,11 +43,6 @@ void loadPlayer() {
     player->setSprite(playerAnimation);
 
     objectlayer = new Render::Layer(800, 600, 0, 0);
-
-    player->posX = 50;
-    player->posY = 300;
-    player->speedCap = 7;
-
     objectlayer->addObject(player);
 }
 

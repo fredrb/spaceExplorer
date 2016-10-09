@@ -11,6 +11,7 @@
 #include "IGlutCallback.h"
 #include "screen/Play.h"
 #include "screen/Start.h"
+#include "screen/GameOver.h"
 
 #include <iostream>
 

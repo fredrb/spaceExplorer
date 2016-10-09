@@ -54,6 +54,7 @@ namespace GameCallback {
             break;
 
             case GameOver:
+                currentScreen = new Screen::GameOver();
             break;
 
             default:

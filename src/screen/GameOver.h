@@ -1,9 +1,9 @@
 //
-// Created by VitorVRS on 10/7/16.
+// Created by VitorVRS on 10/9/16.
 //
 
-#ifndef STAR_EXPLORER_SCREEN_START_H
-#define STAR_EXPLORER_SCREEN_START_H
+#ifndef STAR_EXPLORER_SCREEN_GAMEOVER_H
+#define STAR_EXPLORER_SCREEN_GAMEOVER_H
 
 #include "../render/Image.h"
 #include "../render/Layer.h"
@@ -19,11 +19,11 @@ extern Render::Layer *starfield, *background;
 
 namespace Screen {
 
-    class Start: public IGlutCallback {
+    class GameOver: public IGlutCallback {
 
     public:
-        Start();
-        ~Start();
+        GameOver();
+        ~GameOver();
         virtual void display();
         virtual void update(int value);
         virtual void mouse();
@@ -31,10 +31,10 @@ namespace Screen {
         virtual void keyboard(unsigned char key, int x, int y);
 
     private:
-        Render::Text * start;
+        Render::Text * gameOverMessage;
         Render::Text * message;
     };
 
 }
 
-#endif // STAR_EXPLORER_SCREEN_START_H
+#endif // STAR_EXPLORER_SCREEN_GAMEOVER_H

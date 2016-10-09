@@ -4,11 +4,6 @@
 
 #include "Text.h"
 
-#include <iostream>
-#include <GL/gl.h>
-#include <GL/glut.h>
-
-
 void Render::Text::setText(std::string text) {
     this->text = text;
 }
@@ -17,6 +12,28 @@ void Render::Text::print() {
 
     glRasterPos2f(this->posX, this->posY);
     for (char c : this->text) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+        glutBitmapCharacter(this->font, c);
     }
+};
+
+void Render::Text::setFont(void *font) {
+    this->font = font;
+};
+
+void Render::Text::setX(unsigned int x) {
+    this->posX = x;
+};
+
+void Render::Text::setY(unsigned int y) {
+    this->posY = y;
+};
+
+int Render::Text::getWidth() {
+    int width = 0;
+
+    for (char c : this->text) {
+        width += glutBitmapWidth(this->font, c);
+    }
+
+    return width;
 };

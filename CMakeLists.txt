@@ -15,7 +15,8 @@ set(SOURCE_FILES main.cpp src/Game.cpp src/Game.h
         src/render/Animation.cpp src/render/Animation.h src/render/Layer.cpp src/render/Layer.h src/GameObject.cpp src/GameObject.h src/game/Movement.cpp src/game/Movement.h
         src/render/Text.cpp src/render/Text.h
         src/game/Timer.cpp src/game/Timer.h
-        src/screen/Play.cpp src/screen/Play.h)
+        src/screen/Play.cpp src/screen/Play.h
         src/screen/Start.cpp src/screen/Start.h
+        src/screen/GameOver.cpp src/screen/GameOver.h)
 
 add_executable(star_explorer ${SOURCE_FILES})
