@@ -17,6 +17,7 @@ namespace Render {
         void scrollRight();
         void plot(Image* origin, char zbuffer[]);
         void addObject(GameObject* object);
+        void removeObject(GameObject* object);
         void refresh();
         Image* viewport;
     private:

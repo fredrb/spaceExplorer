@@ -15,9 +15,12 @@
 
 #include <iostream>
 
+extern Render::Image *gameImage;
+extern Render::Animation *enemyAnimation;
+extern Render::Layer *starfield, *background, *objectlayer;
+extern GameObject *player;
 extern Timer *timer;
 extern IGlutCallback *currentScreen;
-
 
 namespace GameCallback {
 

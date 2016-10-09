@@ -8,6 +8,7 @@
 IGlutCallback *currentScreen;
 
 Render::Image *gameImage;
+Render::Animation *enemyAnimation;
 Render::Layer *starfield, *background, *objectlayer;
 Timer *timer;
 GameObject *player;
@@ -46,6 +47,13 @@ void loadPlayer() {
     objectlayer->addObject(player);
 }
 
+void loadEnemyimage() {
+    File::PTMFileReader filereader = File::PTMFileReader();
+    File::t_image img = filereader.loadImage((char *) "../resource/enemy.ptm");
+    SpriteLoader loader = SpriteLoader(img);
+    enemyAnimation = loader.getAnimation(1, 6);
+}
+
 int main(int argc,  char** argv) {
     Game startExplorer = Game();
 
@@ -56,6 +64,7 @@ int main(int argc,  char** argv) {
     loadBackground();
     loadPlayer();
     loadStarField();
+    loadEnemyimage();
 
     startExplorer.init(argc, argv);
     return 0;

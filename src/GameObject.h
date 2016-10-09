@@ -10,7 +10,7 @@ public:
     ~GameObject() {};
     void nextFrame();
     void setSprite(Render::Animation* animation);
-    void refresh();
+    virtual void refresh();
     bool hasPositionChanged();
     bool checkPointCollision(int x, int y);
     Render::Image* getFrame();

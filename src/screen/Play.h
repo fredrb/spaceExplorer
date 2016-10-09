@@ -35,6 +35,16 @@ namespace Screen {
     private:
         int score;
         Render::Text * scoreboard;
+        std::vector<GameObject*> enemies;
+        bool checkPlayerCollision();
+        void removeOutOfRangeEnemies();
+        void spawnEnemy();
+        void raiseDifficulty();
+
+        int maxEnemy;
+        int enemyRatio;
+        int enemySpeed;
+
     };
 
 }

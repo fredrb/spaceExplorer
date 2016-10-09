@@ -22,23 +22,21 @@ namespace GameCallback {
     }
 
     void update(int value) {
-
         timer->start();
         currentScreen->update(value);
         timer->stop();
 
-        int waitingTime = (1000 / FPS) - timer->getElapsedTime();
-        value = waitingTime;
+        int waitingTime = (int) ((1000 / FPS) - timer->getElapsedTime());
 
         std::cout << "ET: " << timer->getElapsedTime() << " TIME: " << waitingTime << std::endl;
 
         if (waitingTime < 0) {
             waitingTime = 0;
-            value = 10;
         }
 
         glutPostRedisplay();
-        glutTimerFunc(waitingTime, update, value);
+        value += 1;
+        glutTimerFunc((unsigned int) waitingTime, update, value);
     }
 
     void changeScreen(AVAL_SCREENS screen) {

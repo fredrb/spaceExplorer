@@ -56,3 +56,10 @@ void Render::Layer::refreshObject(GameObject *object) {
         viewport->plot(object->getFrame(), object->posX, object->posY);
     }
 }
+
+void Render::Layer::removeObject(GameObject *object) {
+    for (unsigned long i = 0; i < objects.size(); i++) {
+        if (objects.at(i) == object)
+            objects.erase(objects.begin() + i);
+    }
+}
