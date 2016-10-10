@@ -25,6 +25,7 @@ namespace Screen {
 
     public:
         Play();
+        ~Play();
         virtual void display();
         virtual void update(int value);
         virtual void mouse();

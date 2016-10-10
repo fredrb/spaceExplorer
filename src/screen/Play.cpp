@@ -21,7 +21,14 @@ Play::Play() {
 
     enemies = std::vector<GameObject*>();
     std::srand((unsigned int) time(NULL));
+}
 
+Play::~Play() {
+    delete this->scoreboard;
+    for (unsigned int i = 0; i < enemies.size(); i++) {
+        objectlayer->removeObject(enemies.at(i));
+        delete enemies.at(i);
+    }
 }
 
 void Play::display() {
@@ -43,8 +50,8 @@ void Play::update(int value) {
     gameImage->plot(starfield->viewport, 0, 0);
     gameImage->plot(objectlayer->viewport, 0, 0);
 
-    starfield->scrollRight();
     background->scrollRight();
+    starfield->scrollRight();
 
     this->score += ((value - this->score) * 0.1);
     scoreboard->setText("Score:" + std::to_string(score));
@@ -155,7 +162,7 @@ void Play::raiseDifficulty() {
 bool Play::checkPlayerCollision() {
     for (unsigned long i = 0; i < enemies.size(); i++) {
         GameObject* enemy = enemies.at(i);
-        if (player->checkPointCollision(enemy->posX, enemy->posY)) {
+        if (collide(player, enemy)) {
             return true;
         }
     }

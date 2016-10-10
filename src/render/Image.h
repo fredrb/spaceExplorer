@@ -1,6 +1,8 @@
 #ifndef IMAGE_MANIPULATION_IMAGE_H
 #define IMAGE_MANIPULATION_IMAGE_H
 
+#include "../ZBuffer.h"
+
 namespace Render {
     typedef struct {
         int alpha;
@@ -20,7 +22,7 @@ namespace Render {
         int getHeight(){ return height; }
         int* getPixels() { return pixels; };
         void plot(Image *image, int sx, int sy);
-        void plot(Image *image, int sx, int sy, char *zbuffer, char depth);
+        void plot(Image *image, int sx, int sy, ZBuffer *zbuffer, int zKey);
         int packageBit(int a, int r, int g, int b);
         void subImage(Image* dest, int sx, int sy);
     private:

@@ -1,7 +1,6 @@
 #ifndef STAR_EXPLORER_GAMEOBJECT_H
 #define STAR_EXPLORER_GAMEOBJECT_H
 
-
 #include "render/Animation.h"
 
 class GameObject {

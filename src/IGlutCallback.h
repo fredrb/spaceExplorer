@@ -8,6 +8,7 @@
 class IGlutCallback {
 
 public:
+    virtual ~IGlutCallback() {};
     virtual void display() {};
     virtual void update(int value) {};
     virtual void mouse() {};

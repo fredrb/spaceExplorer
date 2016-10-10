@@ -29,8 +29,8 @@ void Screen::GameOver::display() {
 void Screen::GameOver::update(int value) {
     gameImage->plot(background->viewport, 0, 0);
     gameImage->plot(starfield->viewport, 0, 0);
-    starfield->scrollRight();
     background->scrollRight();
+    starfield->scrollRight();
 }
 
 void Screen::GameOver::mouse() {}

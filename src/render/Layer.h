@@ -35,7 +35,4 @@ namespace Render {
     };
 }
 
-
-
-
 #endif //STAR_EXPLORER_LAYER_H

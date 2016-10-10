@@ -17,6 +17,7 @@
 extern Render::Image *gameImage;
 extern Render::Layer *starfield, *background;
 
+
 namespace Screen {
 
     class Start: public IGlutCallback {

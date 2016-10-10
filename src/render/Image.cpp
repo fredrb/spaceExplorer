@@ -46,6 +46,29 @@ void Image::plot(Image *image, int sx, int sy) {
     }
 }
 
+void Image::plot(Image *image, int sx, int sy, ZBuffer * zbuffer, int zKey) {
+    int h = image->getHeight();
+    int w = image->getWidth();
+
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+
+            if (zKey < zbuffer->keys[(sx+x) + (sy+y) * zbuffer->width] ) {
+                continue;
+            }
+
+            int pixel = image->getPixel(x, y);
+            int alpha = ((pixel >> 24) & 0xff);
+            if (alpha == 255) {
+                if (isValidPixel(sx + x, sy + y)) {
+                    pixels[(sx + x) + (sy + y) * width] = pixel;
+                    zbuffer->keys[(sx+x) + (sy+y) * zbuffer->width] = zKey;
+                }
+            }
+        }
+    }
+}
+
 t_image_pixel Image::unpackagePixel(int pixel) {
     t_image_pixel unpackaged;
     unpackaged.alpha = (pixel >> 24) & 0xff;

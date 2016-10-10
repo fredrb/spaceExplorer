@@ -13,6 +13,7 @@ Render::Layer *starfield, *background, *objectlayer;
 Timer *timer;
 GameObject *player;
 
+
 void loadBackground() {
     File::PTMFileReader filereader = File::PTMFileReader();
     File::t_image img = filereader.loadImage((char *) "../resource/background.ptm");

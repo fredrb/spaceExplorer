@@ -28,8 +28,8 @@ void Screen::Start::display() {
 void Screen::Start::update(int value) {
     gameImage->plot(background->viewport, 0, 0);
     gameImage->plot(starfield->viewport, 0, 0);
-    starfield->scrollRight();
     background->scrollRight();
+    starfield->scrollRight();
 }
 
 void Screen::Start::mouse() {}
