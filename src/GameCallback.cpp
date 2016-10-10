@@ -22,6 +22,11 @@ namespace GameCallback {
     }
 
     void update(int value) {
+        if (gameReset) {
+            value = 0;
+            gameReset = false;
+        }
+
         timer->start();
         currentScreen->update(value);
         timer->stop();
@@ -53,8 +58,8 @@ namespace GameCallback {
 
             case GameOver:
                 currentScreen = new Screen::GameOver();
+                gameReset = true;
             break;
-
             default:
             break;
         }

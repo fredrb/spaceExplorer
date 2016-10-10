@@ -21,6 +21,7 @@ extern Render::Layer *starfield, *background, *objectlayer;
 extern GameObject *player;
 extern Timer *timer;
 extern IGlutCallback *currentScreen;
+extern bool gameReset;
 
 namespace GameCallback {
 

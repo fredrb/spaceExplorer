@@ -13,6 +13,8 @@ Render::Layer *starfield, *background, *objectlayer;
 Timer *timer;
 GameObject *player;
 
+bool gameReset = false;
+
 
 void loadBackground() {
     File::PTMFileReader filereader = File::PTMFileReader();
