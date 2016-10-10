@@ -29,6 +29,8 @@ Play::~Play() {
         objectlayer->removeObject(enemies.at(i));
         delete enemies.at(i);
     }
+
+    enemies.clear();
 }
 
 void Play::display() {
